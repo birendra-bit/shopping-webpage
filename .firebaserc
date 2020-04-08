@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shopping-c13eb": {
+      "hosting": {
+        "shopping": [
+          "shopping-c13eb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shopping-c13eb"
+  }
+}

@@ -117,8 +117,16 @@
               "devServerTarget": "shopping:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "shopping"
+    }
+  },
+  "defaultProject": "shopping",
+  "cli": {
+    "analytics": "ec89a603-571c-4b0e-ae5b-2dd00a63e223"
+  }
 }
