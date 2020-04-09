@@ -1,6 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
-import { AngularFireList } from '@angular/fire/database';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 @Component({
@@ -22,11 +21,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.categoryService.getCategories().
       snapshotChanges()
         .subscribe(actions=>{
-          actions.forEach(action=>{
-            obj.push({key:action.key,...action.payload.val()})
-            obj.sort();
-            this.categories$ = [...obj]
-          })
+          actions.forEach(action=> obj.push({key:action.key,...action.payload.val()}))
+          obj.sort();
+          this.categories$ = [...obj]
         })
       
       this.route.paramMap.subscribe(params=>{

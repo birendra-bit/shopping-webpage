@@ -11,14 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class AdminAuthGuardService {
 
-  constructor(private auth: AuthService, private userService : UserService, private router: Router) { }
+  constructor(
+    private auth: AuthService, 
+    private userService : UserService, 
+    private router: Router) { }
   // canActivate(): Observable<boolean>{
-    // return this.auth.user$.pipe(
-    //   map(user=>{
-    //         // if(this.userService.get(user.uid).valueChanges().subscribe(x=>x.isAdmin)) return true;
-    //       let flag = false;
-    //       return this.userService.get(user.uid).valueChanges()
-    //   })
-    // ).subscribe(u=>{})
-  //}
+  //   this.auth.user$.pipe(
+  //     map(user=>{
+  //       return this.userService.get(user.uid);
+  //     })
+  //   ).subscribe(result =>{
+  //     return result.valueChanges().subscribe(x=>x.isAdmin)
+  //   })
+  // }
 }

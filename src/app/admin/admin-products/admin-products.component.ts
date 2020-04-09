@@ -14,23 +14,23 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private productdService: ProductService) {
-    let product =[]
+    let product = []
     this.subscription = this.productdService.getAllProduct().snapshotChanges()
-      .subscribe(obj=>{
-        return obj.forEach(pro =>{
-          product.push({key:pro.key,...pro.payload.val()})
+      .subscribe(obj => {
+        return obj.forEach(pro => {
+          product.push({ key: pro.key, ...pro.payload.val() })
           product.sort();
-          this.productList=[...product]
+          this.productList = [...product]
           this.filteredProduct = [...product]
         })
       })
-   }
-  filter(query:string){
-    this.filteredProduct = (query)?
-      this.productList.filter(p=>p.title.toLowerCase().includes(query.toLowerCase())): this.productList;
   }
-  ngOnDestroy(){
+  filter(query: string) {
+    this.filteredProduct = (query) ?
+      this.productList.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) : this.productList;
+  }
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

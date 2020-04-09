@@ -1,3 +1,5 @@
+import { ShoppingCart } from './models/shopping-carts';
+import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { AdminAuthGuardService } from './auth/admin-auth-guard.service';
@@ -27,6 +29,8 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductFilterComponent } from './product/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -117,7 +123,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserService,
     AdminAuthGuardService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
