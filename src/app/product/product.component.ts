@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { ProductService } from './../services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -14,13 +14,15 @@ export class ProductComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   filteredProduct: Product[] = [];
   cart:any;
-  category;
+  val: Observable<any>;
+  category; 
   subscription :Subscription;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService) {
     let array = [];
+    // this.val = productService.getAllProduct().snapshotChanges()
     this.productService.getAllProduct().snapshotChanges().subscribe(pro => {
       pro.forEach(val => {
         array.push({ key: val.key, ...val.payload.val() });

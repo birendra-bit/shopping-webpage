@@ -9,19 +9,17 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  productList: Product[];
-  filteredProduct: any[];
+  productList: Product[]=[];
+  filteredProduct: any[]=[];
   subscription: Subscription;
 
   constructor(private productdService: ProductService) {
-    let product = []
     this.subscription = this.productdService.getAllProduct().snapshotChanges()
       .subscribe(obj => {
         return obj.forEach(pro => {
-          product.push({ key: pro.key, ...pro.payload.val() })
-          product.sort();
-          this.productList = [...product]
-          this.filteredProduct = [...product]
+          this.productList.push({ key: pro.key, ...pro.payload.val() })
+          this.productList.sort();
+          this.filteredProduct = this.productList
         })
       })
   }

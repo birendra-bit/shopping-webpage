@@ -91,22 +91,22 @@ import { ProductCardComponent } from './product-card/product-card.component';
       {
         path:'admin/orders',
         component:AdminOrdersComponent,
-        canActivate:[AuthGuardService] 
+        canActivate:[AuthGuardService,AdminAuthGuardService] 
       },
       {
         path:'admin/products/new',
         component:ProductFormComponent, 
-        canActivate:[AuthGuardService]
+        canActivate:[AuthGuardService,AdminAuthGuardService]
       },
       {
         path:'admin/products/:id',
         component:ProductFormComponent, 
-        canActivate:[AuthGuardService]
+        canActivate:[AuthGuardService,AdminAuthGuardService]
       },
       {
         path:'admin/products',
         component:AdminProductsComponent,
-        canActivate:[AuthGuardService] 
+        canActivate:[AuthGuardService,AdminAuthGuardService] 
       },
       
       {

@@ -1,1 +1,20 @@
-<p>shopping-cart works!</p>
+<h1>Shopping Cart</h1>
+<p>
+    You have {{ shoppingItemCount }} items in your shopping cart.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let key of productId">
+            <td *ngIf="items[key].quantity > 0 "> {{items[key].product.title}}</td>
+            <td *ngIf="items[key].quantity > 0 "> {{items[key].quantity}} </td>
+            <td *ngIf="items[key].quantity > 0 "> {{items[key].product.price * items[key].quantity}}</td>
+        </tr>
+    </tbody>
+</table>

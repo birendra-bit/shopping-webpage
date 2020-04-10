@@ -2,6 +2,9 @@ import { map } from 'rxjs/operators';
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
+import { Observable } from 'rxjs';
+import { ShoppingCart } from '../models/shopping-carts';
 
 @Component({
   selector: 'bs-navbar',
