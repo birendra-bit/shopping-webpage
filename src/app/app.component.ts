@@ -15,32 +15,17 @@ export class AppComponent {
   title = 'shopping';
   items:Observable<any[]>;
 
-  constructor( private userServie: UserService, private auth: AuthService, router: Router){
+  constructor( private userServie: UserService, private auth: AuthService, private router: Router){
     auth.user$.subscribe(user=>{
       if( user ){
         userServie.save(user);
-        router.navigateByUrl(localStorage.getItem('returnUrl'));
+        let returnUrl = localStorage.getItem('returnUrl');
+        
+        if(returnUrl)
+          router.navigateByUrl(localStorage.getItem('returnUrl'));
+        else
+          this.router.navigate(['/']);
       }
     })
-    // httpservice.getUsers().subscribe(data=>{
-    //   console.log(data.val());
-    // })
-    // this.object = httpservice.object('items');
-    // let obj = []
-    // this.items = this.object.valueChanges();
-    
-    // this.object.snapshotChanges().subscribe(e=>{
-    //   e.payload.val().map(data=>{
-    //     // obj.push(data);
-    //     console.log(data)
-    //   });
-    //   console.log(e.payload.key)
-      // this.values = [...obj]
-      // console.log('final : ', this.values);
-    // })
-    // this.object.set()
-    // this.values = [...obj]
-    
-      // this.object = httpservice.getUsers().valueChanges();
-  }
+    }
 }

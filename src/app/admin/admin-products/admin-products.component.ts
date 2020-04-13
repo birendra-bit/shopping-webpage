@@ -1,7 +1,8 @@
+import { ShoppingCartItem } from './../../models/shopping-cart-item';
+import { Product } from './../../models/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-admin-products',
@@ -12,6 +13,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   productList: Product[]=[];
   filteredProduct: any[]=[];
   subscription: Subscription;
+  items : ShoppingCartItem[]=[];
 
   constructor(private productdService: ProductService) {
     this.subscription = this.productdService.getAllProduct().snapshotChanges()

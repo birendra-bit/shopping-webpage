@@ -8,7 +8,7 @@
           [(ngModel)]="product.title"
           name="title"
           type="text"
-          class="form-control"
+          class="form-control form-control-sm"
           required
         />
         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
@@ -25,7 +25,7 @@
             [(ngModel)]="product.price"
             name="price"
             type="number"
-            class="form-control"
+            class="form-control form-control-sm"
             required
           />
           <span class="input-group-text">.00</span>
@@ -46,7 +46,7 @@
           #category="ngModel"
           [(ngModel)]="product.category"
           name="category"
-          class="form-control"
+          class="form-control form-control-sm"
           required
         >
           <option value="">Select Category</option>
@@ -68,7 +68,7 @@
           [(ngModel)]="product.imageUrl"
           name="imageUrl"
           type="text"
-          class="form-control"
+          class="form-control form-control-sm"
           required
         />
         <div

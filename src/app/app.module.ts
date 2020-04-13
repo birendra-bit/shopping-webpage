@@ -31,6 +31,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductFilterComponent } from './product/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,11 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AngularFireAuthModule,
     RouterModule.forRoot([
       {
-        path:'', 
+        path:'',
+        component: ProductComponent
+      },
+      {
+        path:'home',
         component: ProductComponent
       },
       {
@@ -66,8 +74,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
       },
       {
         path:'shopping-cart', 
-        component: ShoppingCartComponent, 
-        canActivate:[AuthGuardService]
+        component: ShoppingCartComponent
       },
       {
         path:'check-out',

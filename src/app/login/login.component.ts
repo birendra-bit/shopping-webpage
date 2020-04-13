@@ -8,12 +8,9 @@ import { Component} from '@angular/core';
 })
 export class LoginComponent {
 
-  constructor( private auth: AuthService ) { 
-    // afAuth.authState.subscribe(x=>console.log(x))
-  }
+  constructor( private auth: AuthService ) {}
+
   login(){
     this.auth.login();
-    // this.afAuth.signInWithEmailAndPassword(new firebase.auth.GoogleAuthProvider())
-    // this.afAuth.signInWithRedirect( new firebase.auth.GoogleAuthProvider());
   }
 }

@@ -1,3 +1,4 @@
+import { ShoppingCartItem } from './../models/shopping-cart-item';
 import { Subscription, Observable } from 'rxjs';
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { ProductService } from './../services/product.service';
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit, OnDestroy {
+export class ProductComponent implements OnInit {
   products: Product[] = [];
   filteredProduct: Product[] = [];
   cart:any;
@@ -20,29 +21,30 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private shoppingCartService: ShoppingCartService) {
-    let array = [];
-    // this.val = productService.getAllProduct().snapshotChanges()
-    this.productService.getAllProduct().snapshotChanges().subscribe(pro => {
-      pro.forEach(val => {
-        array.push({ key: val.key, ...val.payload.val() });
-      })
-      this.products = [...array];
-      route.queryParamMap.subscribe(params => {
-        this.category = params.get('category');
-        this.filteredProduct = (this.category) ? 
-          this.products.filter(p => p.category === this.category) : this.products;
-      })
-    })
-  }
+    private shoppingCartService: ShoppingCartService) {}
 
   async ngOnInit() {
-    this.subscription = (await this.shoppingCartService.getCart())
-      .snapshotChanges().subscribe(cart=>{
+     (await this.shoppingCartService.getCart()).snapshotChanges().
+      subscribe(cart=>{
       this.cart = cart.payload.val();
     })
+    this.populatePorduct();
   }
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
+
+  private populatePorduct() {
+    this.productService.getAllProduct().snapshotChanges().subscribe(pro => {
+      pro.forEach(val => {
+        this.products.push({ key: val.key, ...val.payload.val() });
+      })
+      this.route.queryParamMap.subscribe(params => {
+        this.category = params.get('category');
+        this.applyFilter();
+      })
+    })
+  }
+  
+  private applyFilter(){
+    this.filteredProduct = (this.category) ? 
+    this.products.filter(p => p.category === this.category) : this.products;
   }
 }

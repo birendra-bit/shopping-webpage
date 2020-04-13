@@ -1,3 +1,4 @@
+import { Product } from './../models/product';
 import { ShoppingCart } from './../models/shopping-carts';
 import { Observable } from 'rxjs';
 import { ShoppingCartService } from './../services/shopping-cart.service';
@@ -12,23 +13,37 @@ import { ShoppingCartItem } from '../models/shopping-cart-item';
 })
 export class ShoppingCartComponent implements OnInit {
   cart$:Observable<ShoppingCart>;
-  productId : any[];
+  productId : any[]=[];
   shoppingItemCount:number;
-  items : ShoppingCartItem[];
-  
+  totalItems:number;
+  totalPrice:number;
+  shoppingCart : ShoppingCart;
   constructor( private shoppingCartService : ShoppingCartService) { }
 
   async ngOnInit() {
     this.cart$ = await (await this.shoppingCartService.getCart()).valueChanges()
       this.cart$.subscribe(cart=>{
 
-        this.items = cart.items;
+        this.shoppingCart = cart;
         this.shoppingItemCount = 0;
-        for(let key in cart.items){
-          this.shoppingItemCount += cart.items[key].quantity;
+        this.totalItems = 0;
+        this.totalPrice = 0;
+
+        if(!this.shoppingCart)
+        return;
+        this.productId.splice(0,this.productId.length);
+
+        for(let key in this.shoppingCart.items){
+          if(this.shoppingCart.items[key].quantity > 0) {
+            this.productId.push(key);
+            this.shoppingItemCount += this.shoppingCart.items[key].quantity;
+            this.totalItems += this.shoppingCart.items[key].quantity;
+            this.totalPrice += this.shoppingCart.items[key].product.price;
+          }
         }
-        this.productId = Object.keys(cart.items)
     })
   }
-
+  clearCart(){
+    this.shoppingCartService.clearCart();
+  }
 }
