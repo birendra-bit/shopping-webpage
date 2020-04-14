@@ -1,3 +1,4 @@
+import { OrderService } from './services/order.service';
 import { ShoppingCart } from './models/shopping-carts';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductService } from './services/product.service';
@@ -33,6 +34,8 @@ import { ProductFilterComponent } from './product/product-filter/product-filter.
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
         canActivate:[AuthGuardService]
       },
       {
-        path:'order-success',
+        path:'order-success/:id',
         component:OrderSuccessComponent,
         canActivate:[AuthGuardService]
       },  
@@ -131,7 +136,8 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     AdminAuthGuardService,
     CategoryService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

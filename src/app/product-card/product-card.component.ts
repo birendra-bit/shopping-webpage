@@ -12,22 +12,17 @@ export class ProductCardComponent implements OnInit {
   @Input('show-action') showAction = true;
   @Input('shopping-cart') shoppingCart;
 
-  constructor(private shoppingCartService: ShoppingCartService) {
-
-  }
+  constructor(private shoppingCartService: ShoppingCartService) {}
 
   addToCart() {
     this.shoppingCartService.addToCart(this.product);
   }
-  // removeFromCart() {
-  //   this.shoppingCartService.removeFromCart(this.product);
-  // }
   getQuantity() {
 
     if (!this.shoppingCart) return 0;
     let itemKey = this.product.key;
-    let item = this.shoppingCart.items[itemKey];
-
+    // console.log('item ',itemKey,' ',this.shoppingCart)
+    let item = this.shoppingCart.items[itemKey]
     return item ? item.quantity : 0;
 
   }

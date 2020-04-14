@@ -1,1 +1,18 @@
-<p>admin-orders works!</p>
+<ng-container class="row col-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td> {{order.shipping.name}} </td>
+                <td> {{order.datePlaced | date }}</td>
+                <td><a href="#">view</a> </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

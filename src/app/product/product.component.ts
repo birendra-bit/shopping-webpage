@@ -41,6 +41,7 @@ export class ProductComponent implements OnInit {
         this.applyFilter();
       })
     })
+    // console.log(this.products)
   }
   
   private applyFilter(){
