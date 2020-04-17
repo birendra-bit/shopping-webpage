@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './shared/services/auth/auth.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs'
 import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
-import { UserService } from './services/user.service';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
